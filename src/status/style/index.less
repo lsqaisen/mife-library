@@ -1,0 +1,58 @@
+.dotColor(@color) {
+  :global(.ant-badge-status-dot) {
+    background-color: @color;
+
+    &:after {
+      border-color: @color;
+    }
+  }
+
+  :global(.ant-badge-status-text) {
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
+.info {
+  .dotColor(@primary-color);
+}
+
+.warning {
+  .dotColor(@warning-color);
+}
+
+.success {
+  .dotColor(@success-color);
+}
+
+.error {
+  .dotColor(@error-color);
+}
+
+.status {
+  width: 100%;
+  height: 24px;
+  overflow: hidden;
+
+  :global {
+    .ant-badge-status-text {
+      display: none;
+    }
+  }
+
+  .badge-box,
+  .text-box {
+    float: left;
+  }
+
+  .badge-box {
+    width: 8px;
+  }
+
+  .text-box {
+    height: 100%;
+    float: right;
+    width: ~'calc(100% - 16px)';
+    position: relative;
+  }
+}

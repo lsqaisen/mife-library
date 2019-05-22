@@ -1,0 +1,46 @@
+:global {
+  .ant-table-empty {
+    thead {
+      display: none !important;
+    }
+
+    .ant-table-placeholder {
+      border-bottom: 0;
+    }
+  }
+
+  .ant-table-footer,
+  .ant-table-header {
+
+    border: 0;
+    background-color: #fff;
+
+    &::before {
+      content: none;
+    }
+  }
+
+  .ant-table-tbody,
+  .ant-table-thead {
+    tr {
+      transition: none;
+
+      th,
+      td {
+        background-color: transparent;
+        border: 0 !important;
+        padding: 8px !important;
+      }
+
+      th {
+        padding: 16px 8px !important;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .ant-table-body {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}

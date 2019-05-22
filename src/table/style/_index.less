@@ -1,0 +1,59 @@
+:global {
+  .ant-table-body {
+    width: 100%;
+
+    table {
+      display: inline-block;
+      width: 100%;
+
+      tbody,
+      thead {
+        display: inline-block;
+        width: 100%;
+
+        tr {
+          display: flex;
+          transition: none;
+          height: auto !important;
+        }
+
+        td,
+        th {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          width: 0;
+          word-break: break-all;
+          background-color: transparent;
+          border: 0;
+          padding: 8px;
+        }
+
+        th {
+          padding: 16px 8px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .ant-table-empty {
+    thead {
+      display: none !important;
+    }
+
+    .ant-table-placeholder {
+      border-bottom: 0;
+    }
+  }
+
+  .ant-table-footer,
+  .ant-table-header {
+    border: 0;
+    background-color: #fff;
+
+    &::before {
+      content: none;
+    }
+  }
+}
