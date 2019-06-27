@@ -1,0 +1,38 @@
+.box {
+  background: #fff;
+  margin: 8px;
+  border-radius: 8px;
+
+  .avatar {
+    :global {
+      .anticon {
+        min-width: auto;
+        margin: 0;
+        font-size: inherit;
+      }
+    }
+  }
+
+  :global {
+    .ant-menu {
+      padding: 0;
+      border-radius: 8px;
+    }
+  }
+
+  .namespace {
+    width: 100%;
+    padding-left: 4px;
+
+    :global {
+      .ant-descriptions-item {
+        padding: 0;
+        line-height: 40px;
+        height: 40px;
+        .ant-descriptions-item-content {
+          width: ~'calc(100% - 72px)';
+        }
+      }
+    }
+  }
+}

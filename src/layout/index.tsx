@@ -7,8 +7,10 @@ import styles from './style/index.less';
 
 export interface LayoutProps extends SiderProps {
   empty?: any;
+  state: 'initially' | 'centent' | 'empty';
   className?: string;
   sider: string | React.ReactNode;
+  header?: string | React.ReactNode;
 }
 
 export default class extends React.PureComponent<LayoutProps, any> {
@@ -18,6 +20,7 @@ export default class extends React.PureComponent<LayoutProps, any> {
     width: 210,
   }
   state = {
+    init: false,
     open: false,
   }
   changeOpen = () => {
@@ -26,24 +29,27 @@ export default class extends React.PureComponent<LayoutProps, any> {
     })
   }
   getCentent = () => {
-    const { level, state, matches, width, empty, sider, className, children, } = this.props;
+    const { level, state, matches, width, empty, sider, header, className, children, } = this.props;
     switch (state) {
       case 'initially':
       case 'centent':
         return (
           <React.Fragment>
             {state === "initially" && <Loading key="loading" />}
-            <Layout key="layout" className={styles.layout} style={{ display: state === "centent" ? "flex" : "none'" }}>
-              {sider && <Sider
+            <Layout className={styles.layout} style={{ display: state === "centent" ? "flex" : "none'" }}>
+              <Sider
                 level={level}
                 matches={matches}
-                state={state}
-                width={state === "centent" ? matches ? 0 : width : '100%'}
+                loading={state === "initially" || !this.state.init}
+                width={state === "centent" && this.state.init ? matches ? 0 : width : '100%'}
                 realWidth={width}
               >
                 {sider}
-              </Sider>}
+              </Sider>
               <Layout.Content className={className} style={{ position: 'relative', minHeight: "100vh" }}>
+                <Layout.Header className={styles.header}>
+                  {header}
+                </Layout.Header>
                 {children}
               </Layout.Content>
             </Layout>
@@ -53,6 +59,16 @@ export default class extends React.PureComponent<LayoutProps, any> {
         return empty || <Empty key="empty" />;
       default:
         return <Loading key="loading" />;
+    }
+  }
+  UNSAFE_componentWillReceiveProps({ state }: LayoutProps) {
+    if (state === "centent") {
+      setTimeout(() => { this.setState({ init: true }) }, 450)
+    }
+  }
+  componentDidMount() {
+    if (this.props.state === "centent") {
+      setTimeout(() => { this.setState({ init: true }) }, 450)
     }
   }
   render() {
